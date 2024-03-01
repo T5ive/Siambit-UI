@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         <div class="forgot-pass">
             <a href="recover.php">Forgot Password?</a>
         </div>
-        <input type="submit" value="Log in!" class="btn" />
+        <button type="submit" class="btn">Log in</button>
     </form>
     `;
     document.body.appendChild(divElement);
