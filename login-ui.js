@@ -1,0 +1,151 @@
+document.addEventListener("DOMContentLoaded", function (event) {
+    injectCss();
+    removeOldBody();
+
+    var divElement = document.createElement("div");
+    divElement.className = "wrapper";
+    divElement.innerHTML = `
+            <h1>Login</h1>
+            <div class="input-box">
+                <input id="username" name="username" type="text" placeholder="Username" required />
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required />
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="forgot-pass">
+                <a href="recover.php">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+    `;
+    document.body.appendChild(divElement);
+});
+
+function injectCss() {
+    var cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css";
+    document.head.appendChild(cssLink);
+
+    var styleElement = document.createElement("style");
+    styleElement.textContent = `
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url("img.jpg") no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .wrapper {
+        width: 420px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+    .wrapper h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .wrapper .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+    }
+
+    .input-box input::placeholder {
+        color: #fff;
+    }
+
+    .input-box i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+    }
+
+    .wrapper .forgot-pass {
+        display: flex;
+        justify-content: center;
+        font-size: 14.5px;
+        margin: -15px 0 15px;
+    }
+
+    .forgot-pass label input {
+        accent-color: #fff;
+    }
+
+    .forgot-pass a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .wrapper .btn {
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+        font-weight: 600;
+    }
+`;
+    document.head.appendChild(styleElement);
+}
+
+function removeOldBody() {
+    var inputUsername = document.querySelector('input[name="username"]');
+    inputUsername.remove();
+
+    var inputPassword = document.querySelector('input[name="password"]');
+    inputPassword.remove();
+
+    var bodyContent = document.body.innerHTML;
+
+    var hiddenDiv = document.createElement("div");
+    hiddenDiv.style.display = "none";
+
+    hiddenDiv.innerHTML = bodyContent;
+    // ลบเนื้อหาใน body
+    document.body.innerHTML = "";
+
+    // เพิ่ม div ใหม่ที่มีเนื้อหามาแทนที่
+    document.body.appendChild(hiddenDiv);
+}
