@@ -1,24 +1,32 @@
+// ==UserScript==
+// @name    Siambit Login UI
+// @include  https://bearbit.co/login.php*
+// @version  1
+// @grant    none
+// ==/UserScript==
+
 document.addEventListener("DOMContentLoaded", function (event) {
     injectCss();
-    removeOldBody();
+    document.body.innerHTML = "";
 
     var divElement = document.createElement("div");
     divElement.className = "wrapper";
     divElement.innerHTML = `
-            <h1>Login</h1>
-            <div class="input-box">
-                <input id="username" name="username" type="text" placeholder="Username" required />
-                <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Password" required />
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-            <div class="forgot-pass">
-                <a href="recover.php">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="btn">Login</button>
+            <form method="post" action="takelogin.php">
+        <h1>Login</h1>
+        <div class="input-box">
+            <input id="username" name="username" type="text" placeholder="Username" required />
+            <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+            <input id="password" name="password" type="password" placeholder="Password" required />
+            <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="forgot-pass">
+            <a href="recover.php">Forgot Password?</a>
+        </div>
+        <input type="submit" value="Log in!" class="btn" />
+    </form>
     `;
     document.body.appendChild(divElement);
 });
@@ -45,7 +53,7 @@ function injectCss() {
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: url("img.jpg") no-repeat;
+        background: url("https://github.com/T5ive/Siambit-UI/blob/main/img.jpg?raw=true") no-repeat;
         background-size: cover;
         background-position: center;
     }
@@ -128,24 +136,4 @@ function injectCss() {
     }
 `;
     document.head.appendChild(styleElement);
-}
-
-function removeOldBody() {
-    var inputUsername = document.querySelector('input[name="username"]');
-    inputUsername.remove();
-
-    var inputPassword = document.querySelector('input[name="password"]');
-    inputPassword.remove();
-
-    var bodyContent = document.body.innerHTML;
-
-    var hiddenDiv = document.createElement("div");
-    hiddenDiv.style.display = "none";
-
-    hiddenDiv.innerHTML = bodyContent;
-    // ลบเนื้อหาใน body
-    document.body.innerHTML = "";
-
-    // เพิ่ม div ใหม่ที่มีเนื้อหามาแทนที่
-    document.body.appendChild(hiddenDiv);
 }
