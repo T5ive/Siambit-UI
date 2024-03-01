@@ -1,7 +1,10 @@
 // ==UserScript==
 // @name    Siambit Login UI
-// @include  https://bearbit.co/login.php*
+// @match  https://bearbit.co/login.php*
 // @version  1
+// @author       T5ive
+// @updateURL    https://raw.githubusercontent.com/T5ive/Siambit-UI/main/login-ui.js
+// @downloadURL  https://raw.githubusercontent.com/T5ive/Siambit-UI/main/login-ui.js
 // @grant    none
 // ==/UserScript==
 
@@ -32,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 function injectCss() {
+    
+    //https://www.youtube.com/watch?v=hlwlM4a5rxg
+
     var cssLink = document.createElement("link");
     cssLink.rel = "stylesheet";
     cssLink.href = "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css";
